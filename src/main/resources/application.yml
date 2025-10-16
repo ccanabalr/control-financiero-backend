@@ -1,0 +1,23 @@
+spring:
+  application:
+    name: control-financiero-backend
+
+  data:
+    mongodb:
+      uri: ${MONGODB_URI:mongodb://localhost:27017/control_financiero}
+      auto-index-creation: true
+
+  security:
+    user:
+      name: usuario
+      password: contrasena
+
+server:
+  port: 8080
+  servlet:
+    context-path: /api
+
+logging:
+  level:
+    root: INFO
+    com.proyecto: DEBUG

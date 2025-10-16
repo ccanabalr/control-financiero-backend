@@ -1,0 +1,56 @@
+services:
+  - type: web
+    name: control-financiero-backend
+    runtime: java
+    buildCommand: ./gradlew build -x test
+    startCommand: java -Dserver.port=$PORT -jar build/libs/control-financiero-backend-1.0.0.jar
+    envVars:
+      # MongoDB Connection
+      - key: MONGODB_URI
+        value: ${MONGODB_URI}
+        sync: false
+      
+      # Firebase Admin SDK Configuration
+      - key: FIREBASE_PROJECT_ID
+        value: ${FIREBASE_PROJECT_ID}
+        sync: false
+      
+      - key: FIREBASE_PRIVATE_KEY_ID
+        value: ${FIREBASE_PRIVATE_KEY_ID}
+        sync: false
+      
+      - key: FIREBASE_PRIVATE_KEY
+        value: ${FIREBASE_PRIVATE_KEY}
+        sync: false
+      
+      - key: FIREBASE_CLIENT_EMAIL
+        value: ${FIREBASE_CLIENT_EMAIL}
+        sync: false
+      
+      - key: FIREBASE_CLIENT_ID
+        value: ${FIREBASE_CLIENT_ID}
+        sync: false
+      
+      # Spring Boot Configuration
+      - key: SPRING_PROFILES_ACTIVE
+        value: production
+        sync: false
+      
+      # CORS Configuration
+      - key: ALLOWED_ORIGINS
+        value: ${ALLOWED_ORIGINS}
+        sync: false
+    
+    # Build configuration
+    buildFilter:
+      paths:
+        - src/
+        - build.gradle
+        - gradle.properties
+        - settings.gradle
+    
+    # Health check
+    healthCheckPath: /api/health
+    
+    # Autodeployment from Git
+    autoDeploy: true
