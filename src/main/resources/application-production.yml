@@ -2,6 +2,7 @@ spring:
   data:
     mongodb:
       uri: ${MONGODB_URI}
+      database: ${SPRING_DATA_MONGODB_DATABASE:control_financiero}
   
   jackson:
     serialization:
