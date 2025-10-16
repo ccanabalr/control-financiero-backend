@@ -3,20 +3,14 @@ FROM gradle:8.5-jdk21 AS builder
 
 WORKDIR /app
 
-# Copiar archivos de configuración
+# Copiar archivos de configuración de Gradle
 COPY build.gradle .
-COPY settings.gradle .
-COPY gradle.properties .
-COPY gradle/ gradle/
-COPY gradlew .
-COPY gradlew.bat .
 
 # Copiar código fuente
 COPY src/ src/
 
-# Compilar el proyecto
-RUN chmod +x gradlew && \
-    ./gradlew build -x test --no-daemon
+# Compilar el proyecto usando gradle (ya incluido en la imagen)
+RUN gradle build -x test --no-daemon
 
 # Etapa 2: Runtime con Java 21 ligero
 FROM openjdk:21-slim
