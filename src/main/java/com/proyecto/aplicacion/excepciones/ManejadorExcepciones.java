@@ -89,25 +89,4 @@ public class ManejadorExcepciones {
 
         return new ResponseEntity<>(respuesta, HttpStatus.INTERNAL_SERVER_ERROR);
     }
-
-    /**
-     * Maneja excepciones de recurso no encontrado
-     */
-    @ExceptionHandler(value = IllegalArgumentException.class)
-    public ResponseEntity<RespuestaError> manejarNoEncontrado(
-            IllegalArgumentException ex,
-            WebRequest request) {
-
-        log.warn("Recurso no encontrado: {}", ex.getMessage());
-
-        RespuestaError respuesta = RespuestaError.builder()
-                .mensaje("Recurso no encontrado")
-                .detalle(ex.getMessage())
-                .codigoEstado(HttpStatus.NOT_FOUND.value())
-                .timestamp(LocalDateTime.now())
-                .ruta(request.getDescription(false).replace("uri=", ""))
-                .build();
-
-        return new ResponseEntity<>(respuesta, HttpStatus.NOT_FOUND);
-    }
 }
