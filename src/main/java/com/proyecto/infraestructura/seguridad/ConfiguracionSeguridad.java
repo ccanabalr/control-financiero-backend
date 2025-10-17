@@ -46,7 +46,8 @@ public class ConfiguracionSeguridad {
             "http://localhost:4200",
             "http://localhost:3000",
             "https://localhost:4200",
-            "https://localhost:3000"
+            "https://localhost:3000",
+            "https://control-financiero-cb6f4.web.app"
         ));
         configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS", "PATCH"));
         configuration.setAllowedHeaders(Arrays.asList("*"));
