@@ -1,5 +1,5 @@
 # Etapa 1: Build con Gradle
-FROM gradle:8.5-jdk21 AS builder
+FROM gradle:8.5-jdk17 AS builder
 
 WORKDIR /app
 
@@ -13,7 +13,7 @@ COPY src/ src/
 RUN gradle build -x test --no-daemon --build-cache
 
 # Etapa 2: Runtime con Java 21 ligero
-FROM openjdk:21-slim
+FROM openjdk:17-slim
 
 WORKDIR /app
 
