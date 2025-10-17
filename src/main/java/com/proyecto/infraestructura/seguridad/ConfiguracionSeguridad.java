@@ -32,6 +32,9 @@ public class ConfiguracionSeguridad {
             .authorizeHttpRequests(authz -> authz
                 .requestMatchers("/api/autenticacion/**").permitAll()
                 .requestMatchers("/api/health").permitAll()
+                .requestMatchers("/api/v1/transacciones/**").permitAll()
+                .requestMatchers("/api/v1/usuarios/**").permitAll()
+                .requestMatchers("/api/v1/resumen/**").permitAll()
                 .anyRequest().authenticated()
             )
             .addFilterBefore(filtroAutenticacionFirebase, UsernamePasswordAuthenticationFilter.class);
